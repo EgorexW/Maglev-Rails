@@ -1,0 +1,10 @@
+{
+  "name": "EgorexW Toys",
+  "version": "0.1",
+  "title": "EgorexW Toys",
+  "author": "EgorexW",
+  "factorio_version": "2.0",
+  "dependencies": [
+    "base >= 2.0"],
+  "description": ""
+}
