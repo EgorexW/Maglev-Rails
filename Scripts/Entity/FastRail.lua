@@ -78,12 +78,6 @@ rail_recipe.name = "maglev-rail"
 rail_recipe.result = nil
 rail_recipe.results = {{type = "item", name = "maglev-rail", amount = 2}}
 
-local technology = data.raw["technology"]["railway"]
-table.insert(technology.effects, {
-  type = "unlock-recipe",
-  recipe = "maglev-rail"
-})
-
 data:extend({
   rail_item,
   straight_rail,
