@@ -39,6 +39,14 @@ local train_recipe = table.deepcopy(data.raw["recipe"]["locomotive"])
 train_recipe.name = "maglev-locomotive"
 train_recipe.result = nil
 train_recipe.results = {{type = "item", name = "maglev-locomotive", amount = 1}}
+train_recipe.ingredients = {
+  {type = "item", name = "steel-plate", amount = 20},
+  {type = "item", name = "engine-unit", amount = 10},
+  {type = "item", name = "electronic-circuit", amount = 10},
+  {type = "item", name = "iron-gear-wheel", amount = 5}
+}
+train_recipe.normal = nil
+train_recipe.expensive = nil
 
 data:extend({
   train,

@@ -22,9 +22,31 @@ function M.get_connected_rails(rail)
   local connected = {}
   if not util.is_rail_entity(rail) then return connected end
 
-  local ok, result = pcall(function() return rail.get_connected_rails() end)
-  if ok then
-    add_connected(connected, result)
+  if util.has_method(rail, "get_connected_rails") then
+    local ok, result = pcall(function() return rail.get_connected_rails() end)
+    if ok then
+      add_connected(connected, result)
+      return connected
+    end
+  end
+
+  -- Fallback: older API that exposes get_connected_rail with directions.
+  for _, rail_dir in pairs(defines.rail_direction) do
+    if type(rail_dir) == "number" then
+      for _, conn_dir in pairs(defines.rail_connection_direction) do
+        if type(conn_dir) == "number" then
+          local ok, other = pcall(function()
+            return rail.get_connected_rail({
+              rail_direction = rail_dir,
+              rail_connection_direction = conn_dir
+            })
+          end)
+          if ok and other and other.valid then
+            connected[#connected + 1] = other
+          end
+        end
+      end
+    end
   end
 
   return connected

@@ -76,7 +76,15 @@ apply_tint(straight_rail.pictures, MAGLEV_TINT)
 local rail_recipe = table.deepcopy(data.raw["recipe"]["rail"])
 rail_recipe.name = "maglev-rail"
 rail_recipe.result = nil
-rail_recipe.results = {{type = "item", name = "maglev-rail", amount = 2}}
+rail_recipe.results = {{type = "item", name = "maglev-rail", amount = 5}}
+rail_recipe.ingredients = {
+  {type = "item", name = "steel-plate", amount = 2},
+  {type = "item", name = "stone-brick", amount = 1},
+  {type = "item", name = "electronic-circuit", amount = 1},
+  {type = "item", name = "iron-stick", amount = 2}
+}
+rail_recipe.normal = nil
+rail_recipe.expensive = nil
 
 data:extend({
   rail_item,

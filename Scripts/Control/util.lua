@@ -3,6 +3,11 @@
 
 local M = {}
 
+function M.has_method(obj, name)
+  local ok, value = pcall(function() return obj[name] end)
+  return ok and type(value) == "function"
+end
+
 function M.refund_item(item_name, surface, position, force, event)
   -- Try to return the item to the builder (player/robot), otherwise drop it.
   if not item_name then return end
@@ -52,8 +57,7 @@ end
 
 function M.is_rail_entity(entity)
   if not (entity and entity.valid) then return false end
-  local ok, value = pcall(function() return entity.get_connected_rails end)
-  return ok and type(value) == "function"
+  return M.has_method(entity, "get_connected_rails") or M.has_method(entity, "get_connected_rail")
 end
 
 return M
