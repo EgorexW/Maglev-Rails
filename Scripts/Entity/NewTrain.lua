@@ -24,6 +24,9 @@ train.name = "maglev-locomotive"
 train.max_speed = 3
 --train.max_power = "2000kW"
 train.weight = 1000
+-- Base air resistance caps a 600 kW locomotive near 330 km/h, well below max_speed.
+train.air_resistance = 0.003
+train.minable.result = "maglev-locomotive"
 train.localised_name = {"entity-name.maglev-locomotive"}
 train.color = MAGLEV_TINT
 train.allow_manual_color = false
